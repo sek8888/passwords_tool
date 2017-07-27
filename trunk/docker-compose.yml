@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    app_flask:
+        container_name: app_ptool
+        build: ./docker/flask
+        command: python3.5 main.py
+        ports:
+            - "82:5000" #external:internal ports
+        volumes:
+            - ./app/:/opt/app
+            - /etc/localtime:/etc/localtime:ro

@@ -1,0 +1,11 @@
+/home/devdb/ptool/run_python_server.sh
+
+link for install sshpass
+
+
+yum install -y sshpass
+sshpass -p "devdb14@devdb" ssh -X devdb@192.168.0.49
+
+if ssh click then copyed text == sshpass -p "devdb14@devdb" ssh -X devdb@192.168.0.49
+
+scp -r /home/SE/Projects/ptool devdb@192.168.0.49:/home/devdb

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <div class="jumbotron">
+<h1>{{title}}</h1>
+</div> -->
+
+<style type="text/css">
+.tg  {
+  border-collapse:collapse;
+  border-spacing:0;
+  border-color:#aabcfe;
+}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-mb3i{background-color:#D2E4FC;text-align:right;vertical-align:top}
+.tg .tg-lqy6{text-align:right;vertical-align:top}
+.tg .tg-head{
+  background-color:#D2E4FC;
+  vertical-align:top
+}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+
+Search for keys: <input type="text" id="searchInput" onkeyup="search_keys()" placeholder="Search for keys.." tabindex=1 autofocus style="width:100%;">
+<hr>
+This text copied to clipboard: <input type="text" id="copyingText" value="" readonly tabindex=2 style="width:100%;">
+
+<hr>
+<table class="tg" id="table" border="1" tabindex=3 >
+<tr>
+  <th class="tg-baqh" colspan="7">Passwords</th>
+</tr>
+<tr>
+  <th class="tg-head">id</th>
+  <th class="tg-head">title</th>
+  <th class="tg-head">ip</th>
+  <th class="tg-head">target</th>
+  <th class="tg-head">user</th>
+  <th class="tg-head">password</th>
+  <th class="tg-head">comment</th>
+</tr>
+{% for row in table %}
+{% set i = loop.index0 %}
+<tr class="{{ loop.cycle('tg-yw4l', 'tg-head') }}" >
+    {% for cell in row %}
+    {% if loop.index0 == 5 %}
+    <td><a href="{{loop.index0}}">{{i}}: {{loop.index0}}</a></td>
+    {% else %}
+    <td>{{cell}}</td>
+    {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}

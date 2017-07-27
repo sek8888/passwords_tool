@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <div class="jumbotron">
+<h1>{{title}}</h1>
+</div> -->
+
+<style type="text/css">
+.tg  {
+  border-collapse:collapse;
+  border-spacing:0;
+  border-color:#aabcfe;
+}
+.tg td{
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  padding:10px 5px;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;
+  border-color:#aabcfe;
+  color:#669;
+  background-color:#e8edff;
+}
+.tg th{
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  font-weight:normal;
+  padding:10px 5px;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;
+  border-color:#aabcfe;
+  color:#039;
+  background-color:#b9c9fe;
+}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-mb3i{background-color:#D2E4FC;text-align:right;vertical-align:top}
+.tg .tg-lqy6{text-align:right;vertical-align:top}
+.tg .tg-head{
+  background-color:#D2E4FC;
+  vertical-align:top
+}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<div id ="form" style="display: none; border: 5px solid #fff; outline: 1px solid #aabcfe; background-color: #e8edff;">
+  <form action="insert" method="post" >
+    table:
+    <input type="text" name="table" value="{{table_name}}" readonly="" style="width:100%;">
+    <br>
+    {% for name in column_names %}
+      {% if name[0] != 'id' %}
+      {{name[0]}}:
+      <input type="text" name="{{name[0]}}" placeholder="Please enter value" style="width:100%;">
+      <br>
+      {% endif %}
+    {% endfor %}
+    <br>
+    <div style="text-align:center;">
+    <input type="submit" value="Add">
+    </div>
+    <br>
+  </form>
+</div>
+
+Search for keys:
+<input type="text" id="searchInput" onkeyup="search_keys()"
+placeholder="Search for keys.." tabindex=1 autofocus style="width:100%;">
+<hr>
+This text copied to clipboard:
+<input type="text" id="copyingText" value="" readonly tabindex=2 style="width:100%;">
+
+<hr>
+<table class="tg" id="table" border="1" tabindex=3 >
+<tr>
+  <th class="tg-baqh" colspan="7">Passwords</th>
+</tr>
+<tr>
+  {% for name in column_names %}
+  <th class="tg-head">{{name[0]}}</th>
+  {% endfor %}
+</tr>
+{% set pass_col_num = 100 %}
+{% if table_name == 'servers' %}
+  {% set pass_col_num = 5 %}
+{% endif %}
+{% if table_name == 'svn' %}
+  {% set pass_col_num = 2 %}
+{% endif %}
+{% if table_name == 'accounts' %}
+  {% set pass_col_num = 4 %}
+{% endif %}
+
+{% for row in table %}
+{% set i = loop.index0 %}
+<tr class="{{ loop.cycle('tg-yw4l', 'tg-head') }}" >
+    {% for cell in row %}
+      {% if loop.index0 == pass_col_num %}
+      <td>DoubleClick</td>
+      {% else %}
+      <td>{{cell}}</td>
+      {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}
