@@ -1,3 +1,7 @@
+$('#copiedText').change('change keydown paste input', function() {
+    console.log('sdsd');
+});
+
 function show_add(){
       var x = document.getElementById('form');
       var b = document.getElementById('li_add_pass');
@@ -32,7 +36,7 @@ function copyToClipboard(text){
 
 function copyTo(text){
   copyToClipboard(text);
-  $('#copyingText').val(text);
+  $('#copiedText').val(text);
 }
 
 function get_copy(data){
